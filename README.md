@@ -21,6 +21,8 @@ robotiq_s_gripper/robotiq_s_model_control/launch/s_model.launch
 into /etc/ros/indigo/husky-core.d/
 ```
 and modifiy the params in each launch file to point to the appropriate FTDI and IP addresses
+NOTE: There is a namspace (ns) argument in those launch files. If there are multiple arms, namespace them as UR_1, UR_2, etc.
+Then copy the setup in the launch files for two different namespaces 
 
 check that gripper behaves by re-setting and then activating/opening closing the gripper with:
 ```
