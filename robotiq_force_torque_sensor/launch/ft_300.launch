@@ -3,7 +3,7 @@
 <launch>
 	
 	<node name="ft_sensor" pkg="robotiq_force_torque_sensor" type="rq_sensor" respawn="true" output="screen">
-	<rosparam param="serial_ip">ftdi_DAT2I6O</rosparam>
+	<rosparam param="serial_id">ftdi_DAT2I6O</rosparam>
 	</node>
 
 </launch>
