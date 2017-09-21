@@ -166,7 +166,7 @@ def publisher():
 
     rospy.init_node('SModelSimpleController')
 
-    topic_name = rospy.get_param('~topic', 'SModelRobotOutput')
+    topic_name = rospy.get_param('~topic', '/UR1/SModelRobotOutput')
     pub = rospy.Publisher(topic_name, SModelRobotOutput)
 
     command = SModelRobotOutput()
