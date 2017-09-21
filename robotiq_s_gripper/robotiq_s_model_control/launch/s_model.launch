@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+
+<launch>
+	
+	<node name="s_model" pkg="robotiq_s_model_control" type="SModelTcpNode" respawn="true" output="screen">
+	</node>
+
+</launch>
