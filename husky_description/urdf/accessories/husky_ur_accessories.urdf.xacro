@@ -6,52 +6,58 @@
   <xacro:include filename="$(find ur_description)/urdf/ur3.urdf.xacro" />
   <xacro:include filename="$(find ur_description)/urdf/ur10.urdf.xacro" />
 
-  <!-- CHANGE THESE VALUES DURING INTEGRATION -->
+
+
+  <!-- CHANGE BELOW VALUES DURING INTEGRATION -->
   
   <xacro:arg name="ur3_enabled" default="false"/>
   <xacro:arg name="ur5_enabled" default="true"/>
   <xacro:arg name="ur10_enabled" default="false"/>
-  
-  <!-- CHANGE THESE VALUES DURING INTEGRATION -->
+  <xacro:property name="ur_origin">
+   <origin xyz="0.28 0 0.0065" rpy="0.0 0.0 -1.57" />
+  </xacro:property>
+  <xacro:property name="arch_origin">
+    <origin xyz="-0.32 0.0 0.0" rpy="0.0 0.0 0.0" />
+  </xacro:property>
 
-    <xacro:macro name="sensor_arch" params="prefix parent size:=510 *origin">
+  <!-- CHANGE ABOVE VALUES DURING INTEGRATION -->
 
-        <!-- Spawn the sensor arch link -->
-        <link name="$sensor_arch_mount_link">
-             <origin xyz="0 0 0" rpy="0 0 0"/>
+
+
+
+
+
+    <!-- Spawn the sensor arch link -->
+      <link name="sensor_arch_mount_link">
              <visual>
                  <geometry>
                      <mesh filename="package://husky_description/meshes/integration_arch.dae" />
                  </geometry>
              </visual>
              <collision>
-                 <origin xyz="0 0 0" rpy="0 0 0"/>
                  <geometry>
                      <mesh filename="package://husky_description/meshes/integration_arch.dae" />
                  </geometry>
              </collision>
-        </link>
+    </link>
 
-        <!-- Attach the sensor arch to the top plate -->
-        <joint name="$sensor_arch_mount" type="fixed">
-             <xacro:insert_block name="origin"/>
-             <parent link="$top_plate_link"/>
-             <child link="$sensor_arch_mount_link"/>
-	     <origin xyz="0.0 0 0.0" rpy="0.0 0.0 0.0" />
-        </joint>
-
-    </xacro:macro>
+    <!-- Attach the sensor arch to the top plate -->
+    <joint name="sensor_arch_mount" type="fixed">
+             <parent link="top_plate_link"/>
+             <child link="sensor_arch_mount_link"/>
+             <xacro:insert_block name="arch_origin" />
+    </joint>
 
     <xacro:if value="$(arg ur3_enabled)">
 
       <!-- Spawn arm -->
-      <xacro:ur5_robot prefix="ur3_arm_" joint_limited="true"/>
+      <xacro:ur3_robot prefix="ur3_arm_" joint_limited="true"/>
 
-      <!-- Join arm NEED TO ADJUST THESE VALUES!! -->
+      <!-- Join arm -->
       <joint name="ur3_arm_base" type="fixed">
         <parent link="top_plate_link" />
         <child link="ur3_arm_base_link" />
-        <origin xyz="0.3058 0 0.0065" rpy="0.0 0.0 -1.57" />
+        <xacro:insert_block name="ur_origin" />
       </joint>
 
     </xacro:if>
@@ -66,7 +72,7 @@
       <joint name="ur5_arm_base" type="fixed">
         <parent link="top_plate_link" />
         <child link="ur5_arm_base_link" />
-        <origin xyz="0.3058 0 0.0065" rpy="0.0 0.0 -1.57" />
+        <xacro:insert_block name="ur_origin" />
       </joint>
 
     </xacro:if>
@@ -74,13 +80,13 @@
     <xacro:if value="$(arg ur10_enabled)">
 
       <!-- Spawn arm -->
-      <xacro:ur5_robot prefix="ur10_arm_" joint_limited="true"/>
+      <xacro:ur10_robot prefix="ur10_arm_" joint_limited="true"/>
 
-      <!-- Join arm NEED TO ADJUST THESE VALUES!! -->
+      <!-- Join arm -->
       <joint name="ur10_arm_base" type="fixed">
         <parent link="top_plate_link" />
         <child link="ur10_arm_base_link" />
-        <origin xyz="0.3058 0 0.0065" rpy="0.0 0.0 -1.57" />
+        <xacro:insert_block name="ur_origin" />
       </joint>
 
     </xacro:if>
