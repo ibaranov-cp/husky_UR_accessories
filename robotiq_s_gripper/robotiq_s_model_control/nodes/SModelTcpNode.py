@@ -50,7 +50,10 @@ import os, sys
 from robotiq_s_model_articulated_msgs.msg import SModelRobotInput  as inputMsg
 from robotiq_s_model_articulated_msgs.msg import SModelRobotOutput as outputMsg
 
-def mainLoop(address):
+def mainLoop():
+    
+    print "Launching S-Model Gripper Control"
+    address = rospy.get_param('/s_model_ip', '192.168.1.19')
     
     #Gripper is a S-Model with a TCP connection
     gripper = robotiq_s_model_control.baseSModel.robotiqBaseSModel()
@@ -87,5 +90,5 @@ def mainLoop(address):
 if __name__ == '__main__':
     try:
         #TODO: Add verification that the argument is an IP address
-        mainLoop(sys.argv[1])
+        mainLoop()
     except rospy.ROSInterruptException: pass
