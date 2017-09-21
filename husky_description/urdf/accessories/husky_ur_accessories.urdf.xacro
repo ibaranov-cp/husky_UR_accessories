@@ -1,12 +1,18 @@
 <?xml version="1.0"?>
+
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="extras">
+
   <xacro:include filename="$(find ur_description)/urdf/ur5.urdf.xacro" />
   <xacro:include filename="$(find ur_description)/urdf/ur3.urdf.xacro" />
   <xacro:include filename="$(find ur_description)/urdf/ur10.urdf.xacro" />
 
-  <arg name="ur3_enabled" default="false"/>
-  <arg name="ur5_enabled" default="false"/>
-  <arg name="ur10_enabled" default="false"/>
+  <!-- CHANGE THESE VALUES DURING INTEGRATION -->
+  
+  <xacro:arg name="ur3_enabled" default="false"/>
+  <xacro:arg name="ur5_enabled" default="true"/>
+  <xacro:arg name="ur10_enabled" default="false"/>
+  
+  <!-- CHANGE THESE VALUES DURING INTEGRATION -->
 
 
     <xacro:if value="$(arg ur3_enabled)">
