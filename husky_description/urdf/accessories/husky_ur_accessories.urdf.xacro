@@ -14,6 +14,33 @@
   
   <!-- CHANGE THESE VALUES DURING INTEGRATION -->
 
+    <xacro:macro name="sensor_arch" params="prefix parent size:=510 *origin">
+
+        <!-- Spawn the sensor arch link -->
+        <link name="$sensor_arch_mount_link">
+             <origin xyz="0 0 0" rpy="0 0 0"/>
+             <visual>
+                 <geometry>
+                     <mesh filename="package://husky_description/meshes/integration_arch.dae" />
+                 </geometry>
+             </visual>
+             <collision>
+                 <origin xyz="0 0 0" rpy="0 0 0"/>
+                 <geometry>
+                     <mesh filename="package://husky_description/meshes/integration_arch.dae" />
+                 </geometry>
+             </collision>
+        </link>
+
+        <!-- Attach the sensor arch to the top plate -->
+        <joint name="$sensor_arch_mount" type="fixed">
+             <xacro:insert_block name="origin"/>
+             <parent link="$top_plate_link"/>
+             <child link="$sensor_arch_mount_link"/>
+	     <origin xyz="0.0 0 0.0" rpy="0.0 0.0 0.0" />
+        </joint>
+
+    </xacro:macro>
 
     <xacro:if value="$(arg ur3_enabled)">
 
