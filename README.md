@@ -12,3 +12,10 @@ sudo apt-get install ros-indigo-soem -y
 rosdep install robotiq_modbus_tcp
 ```
 S gripper is the 3 finger model, C gripper is 2 finger model
+
+
+Copy launch files from:
+robotiq_force_torque_sensor/launch/ft_300.launch
+robotiq_s_gripper/robotiq_s_model_control/launch/s_model.launch
+into /etc/ros/indigo/husky-core.d/
+and modifiy the params in each launch file to point to the appropriate FTDI and IP addresses
