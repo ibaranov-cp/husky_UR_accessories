@@ -2,8 +2,8 @@
 
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="extras">
 
-  <xacro:include filename="$(find ur_description)/urdf/ur5.urdf.xacro" />
   <xacro:include filename="$(find ur_description)/urdf/ur3.urdf.xacro" />
+  <xacro:include filename="$(find ur_description)/urdf/ur5.urdf.xacro" />
   <xacro:include filename="$(find ur_description)/urdf/ur10.urdf.xacro" />
   <xacro:include filename="$(find robotiq_force_torque_sensor)/urdf/robotiq_fts300.urdf.xacro" />
   <xacro:include filename="$(find robotiq_s_model_control)/urdf/s_model_open.urdf.xacro" />
@@ -33,17 +33,47 @@
   <!-- CHANGE ABOVE VALUES DURING INTEGRATION -->
 
     <xacro:if value="$(arg ft_300_enabled)">
-
       <!-- Spawn FT Sensor -->
       <xacro:robotiq_fts300 prefix="$(arg ft_300_prefix)" parent="$(arg ft_300_parent)" />
-
     </xacro:if>
 
     <xacro:if value="$(arg s_model_enabled)">
-
       <!-- Spawn S model Gripper -->
       <xacro:s_model_open prefix="$(arg s_model_prefix)" parent="$(arg s_model_parent)"/>
+    </xacro:if>
 
+    <xacro:if value="$(arg ur3_enabled)">
+      <!-- Spawn arm -->
+      <xacro:ur3_robot prefix="ur3_arm_" joint_limited="true"/>
+      <!-- Join arm -->
+      <joint name="ur3_arm_base" type="fixed">
+        <parent link="top_plate_link" />
+        <child link="ur3_arm_base_link" />
+        <xacro:insert_block name="ur_origin" />
+      </joint>
+    </xacro:if>
+
+
+    <xacro:if value="$(arg ur5_enabled)">
+      <!-- Spawn arm -->
+      <xacro:ur5_robot prefix="ur5_arm_" joint_limited="true"/>
+      <!-- Join arm -->
+      <joint name="ur5_arm_base" type="fixed">
+        <parent link="top_plate_link" />
+        <child link="ur5_arm_base_link" />
+        <xacro:insert_block name="ur_origin" />
+      </joint>
+    </xacro:if>
+
+    <xacro:if value="$(arg ur10_enabled)">
+      <!-- Spawn arm -->
+      <xacro:ur10_robot prefix="ur10_arm_" joint_limited="true"/>
+      <!-- Join arm -->
+      <joint name="ur10_arm_base" type="fixed">
+        <parent link="top_plate_link" />
+        <child link="ur10_arm_base_link" />
+        <xacro:insert_block name="ur_origin" />
+      </joint>
     </xacro:if>
 
     <!-- Spawn the sensor arch link -->
@@ -66,48 +96,5 @@
              <child link="sensor_arch_mount_link"/>
              <xacro:insert_block name="arch_origin" />
     </joint>
-
-    <xacro:if value="$(arg ur3_enabled)">
-
-      <!-- Spawn arm -->
-      <xacro:ur3_robot prefix="ur3_arm_" joint_limited="true"/>
-
-      <!-- Join arm -->
-      <joint name="ur3_arm_base" type="fixed">
-        <parent link="top_plate_link" />
-        <child link="ur3_arm_base_link" />
-        <xacro:insert_block name="ur_origin" />
-      </joint>
-
-    </xacro:if>
-
-
-    <xacro:if value="$(arg ur5_enabled)">
-
-      <!-- Spawn arm -->
-      <xacro:ur5_robot prefix="ur5_arm_" joint_limited="true"/>
-
-      <!-- Join arm -->
-      <joint name="ur5_arm_base" type="fixed">
-        <parent link="top_plate_link" />
-        <child link="ur5_arm_base_link" />
-        <xacro:insert_block name="ur_origin" />
-      </joint>
-
-    </xacro:if>
-
-    <xacro:if value="$(arg ur10_enabled)">
-
-      <!-- Spawn arm -->
-      <xacro:ur10_robot prefix="ur10_arm_" joint_limited="true"/>
-
-      <!-- Join arm -->
-      <joint name="ur10_arm_base" type="fixed">
-        <parent link="top_plate_link" />
-        <child link="ur10_arm_base_link" />
-        <xacro:insert_block name="ur_origin" />
-      </joint>
-
-    </xacro:if>
 
 </robot>
