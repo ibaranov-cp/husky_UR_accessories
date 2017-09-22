@@ -19,7 +19,7 @@
   </xacro:property>
 
   <xacro:arg name="ft_300_enabled" default="true"/>
-  <xacro:arg name="ft_300_parent" default="ur5_arm_tool0"/> <!-- can also be ur5_arm_ee_link -->
+  <xacro:arg name="ft_300_parent" default="ur5_arm_tool0"/> 
   <xacro:arg name="ft_300_prefix" default="UR_1_"/>
 
   <xacro:arg name="s_model_enabled" default="true"/>
@@ -31,6 +31,8 @@
   </xacro:property>
 
   <!-- CHANGE ABOVE VALUES DURING INTEGRATION -->
+
+
 
     <xacro:if value="$(arg ft_300_enabled)">
       <!-- Spawn FT Sensor -->
