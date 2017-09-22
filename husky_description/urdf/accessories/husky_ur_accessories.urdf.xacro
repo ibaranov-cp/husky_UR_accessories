@@ -22,7 +22,7 @@
   <xacro:arg name="ft_300_parent" default="ur5_arm_wrist_3_link"/>
   <xacro:arg name="ft_300_prefix" default="UR_1_"/>
 
-  <xacro:arg name="s_model_enabled" default="false"/>
+  <xacro:arg name="s_model_enabled" default="true"/>
   <xacro:arg name="s_model_parent" default="$(arg ft_300_prefix)fts_toolside"/>
   <xacro:arg name="s_model_prefix" default="UR_1_"/>
 
@@ -41,8 +41,8 @@
 
     <xacro:if value="$(arg s_model_enabled)">
 
-      <!-- Spawn FT Sensor -->
-      <xacro:robotiq_fts300 prefix="$(arg s_model_prefix)" parent="$(arg s_model_parent)"/>
+      <!-- Spawn S model Gripper -->
+      <xacro:s_model_open prefix="$(arg s_model_prefix)" parent="$(arg s_model_parent)"/>
 
     </xacro:if>
 
