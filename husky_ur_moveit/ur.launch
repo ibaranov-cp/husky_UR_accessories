@@ -8,7 +8,7 @@
     <arg name="reverse_port" default="50001"/>
     <arg name="min_payload" default="0.0"/>
     <arg name="max_payload" default="10.0"/>
-    <arg name="prefix" default="ur5_arm_"/> <!-- ur5_arm_ -->
+    <arg name="prefix" default="ur_arm_"/> <!-- ur5_arm_ -->
 
     <!-- The max_velocity parameter is only used for debugging in the ur_driver. It's not related to actual velocity limits -->
     <arg name="max_velocity" default="10.0"/> <!-- [rad/s] -->
