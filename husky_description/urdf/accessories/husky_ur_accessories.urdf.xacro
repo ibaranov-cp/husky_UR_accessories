@@ -2,14 +2,13 @@
 
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="extras">
 
-  <xacro:include filename="$(find ur_description)/urdf/ur3.urdf.xacro" />
-  <xacro:include filename="$(find ur_description)/urdf/ur5.urdf.xacro" />
-  <xacro:include filename="$(find ur_description)/urdf/ur10.urdf.xacro" />
   <xacro:include filename="$(find robotiq_force_torque_sensor)/urdf/robotiq_fts300.urdf.xacro" />
   <xacro:include filename="$(find robotiq_s_model_control)/urdf/s_model_open.urdf.xacro" />
 
 
   <!-- CHANGE BELOW VALUES DURING INTEGRATION -->
+  <!-- MUST CHANGE TO UR5, UR3 or UR10 depending on needs -->
+  <xacro:include filename="$(find ur_description)/urdf/ur5.urdf.xacro" />
   
   <xacro:arg name="ur3_enabled" default="false"/>
   <xacro:arg name="ur5_enabled" default="true"/>
