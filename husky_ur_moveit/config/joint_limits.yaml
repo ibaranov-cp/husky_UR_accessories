@@ -22,13 +22,20 @@ joint_limits:
     max_velocity: 3.2
     has_acceleration_limits: false
     max_acceleration: 0
+    min_position: -4.71239
+    max_position: 4.71239
   ur_arm_wrist_2_joint:
     has_velocity_limits: true
     max_velocity: 3.2
     has_acceleration_limits: false
     max_acceleration: 0
+    min_position: -4.71239
+    max_position: 4.71239
   ur_arm_wrist_3_joint:
     has_velocity_limits: true
     max_velocity: 3.2
     has_acceleration_limits: false
     max_acceleration: 0
+    min_position: -4.71239
+    max_position: 4.71239
+    
