@@ -5,7 +5,8 @@
   <xacro:include filename="$(find ur_description)/urdf/ur5.urdf.xacro" />
   <xacro:include filename="$(find ur_description)/urdf/ur3.urdf.xacro" />
   <xacro:include filename="$(find ur_description)/urdf/ur10.urdf.xacro" />
-
+  <xacro:include filename="$(find robotiq_force_torque_sensor)/urdf/robotiq_fts300.urdf.xacro" />
+  <xacro:include filename="$(find robotiq_s_model_control)/urdf/s_model_open.urdf.xacro" />
 
 
   <!-- CHANGE BELOW VALUES DURING INTEGRATION -->
@@ -16,16 +17,37 @@
   <xacro:property name="ur_origin">
    <origin xyz="0.28 0 0.0065" rpy="0.0 0.0 -1.57" />
   </xacro:property>
+
+  <xacro:arg name="ft_300_enabled" default="true"/>
+  <xacro:arg name="ft_300_parent" default="ur5_arm_wrist_3_link"/>
+  <xacro:arg name="ft_300_prefix" default="UR_1_"/>
+  <xacro:property name="ft_300_origin">
+   <origin xyz="0 0 0.009" rpy="0 0 0">
+  </xacro:property>
+
+  <xacro:arg name="s_model_enabled" default="false"/>
+  <xacro:arg name="s_model_parent" default="$(arg ft_300_prefix)fts_toolside"/>
+  <xacro:arg name="s_model_prefix" default="UR_1_"/>
+
   <xacro:property name="arch_origin">
     <origin xyz="-0.32 0.0 0.0" rpy="0.0 0.0 0.0" />
   </xacro:property>
 
   <!-- CHANGE ABOVE VALUES DURING INTEGRATION -->
 
+    <xacro:if value="$(arg ft_300_enabled)">
 
+      <!-- Spawn FT Sensor -->
+      <xacro:robotiq_fts300 prefix="$(arg ft_300_prefix)" parent="$(arg ft_300_parent)" origin="ft_300_origin"/>
 
+    </xacro:if>
 
+    <xacro:if value="$(arg s_model_enabled)">
 
+      <!-- Spawn FT Sensor -->
+      <xacro:robotiq_fts300 prefix="$(arg s_model_prefix)" parent="$(arg s_model_parent)"/>
+
+    </xacro:if>
 
     <!-- Spawn the sensor arch link -->
       <link name="sensor_arch_mount_link">
