@@ -28,3 +28,10 @@ check that gripper behaves by re-setting and then activating/opening closing the
 ```
 rosrun robotiq_s_model_control SModelSimpleController.py
 ```
+
+On Integrator's laptop, clone robot's husky_UR_accessories setup (including custom DAE arch, etc)
+```
+roslaunch moveit_setup_assistant setup_assistant.launch
+```
+And select Create New Moveit configuration -> husky_description -> urdf -> description.xacro
+In Self Collisions tab on the left, set slider to highest value, select "Regenerate Default Collision Matrix"
