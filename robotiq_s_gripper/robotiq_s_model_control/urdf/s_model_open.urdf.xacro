@@ -4,7 +4,7 @@
     <xacro:macro name="s_model_open" params="parent prefix ">
 
         <!-- mount the Gripper to the robot -->
-        
+
         <joint name="${prefix}_s_model_adapter" type="fixed" >
             <origin xyz="0.0 0.0 0.015" rpy="0.0 0.0 0.0"/>
 	    <parent link="${parent}" />
@@ -40,17 +40,15 @@
             <visual>
                 <origin xyz="0 0 0" rpy="0 0 0" />
                 <geometry>
-                    <mesh filename="package://robotiq_s_model_control/meshes/s_model_open.stl" scale= "0.001 0.001 0.001" />
+                    <mesh filename="package://robotiq_s_model_control/meshes/s_model_open.dae" />
                 </geometry>
-                <material name="black"/>
             </visual>
 
             <collision>
                 <origin xyz="0 0 0" rpy="0 0 0" />
                 <geometry>
-                    <mesh filename="package://robotiq_s_model_control/meshes/s_model_open.stl" scale= "0.001 0.001 0.001" />
+                    <mesh filename="package://robotiq_s_model_control/meshes/s_model_open_collision.stl" />
                 </geometry>
-                <material name="red"/>
             </collision>
         </link>
 

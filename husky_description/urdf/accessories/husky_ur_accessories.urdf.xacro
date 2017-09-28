@@ -21,11 +21,11 @@
   <xacro:arg name="ft_300_parent" default="ur_arm_tool0"/>
   <xacro:arg name="ft_300_prefix" default="UR_1_"/>
 
-  <xacro:arg name="s_model_enabled" default="false"/>
+  <xacro:arg name="s_model_enabled" default="true"/>
   <xacro:arg name="s_model_parent" default="$(arg ft_300_prefix)fts_toolside"/>
   <xacro:arg name="s_model_prefix" default="UR_1_"/>
 
-  <xacro:arg name="c_model_enabled" default="true"/>
+  <xacro:arg name="c_model_enabled" default="false"/>
   <xacro:arg name="c_model_parent" default="$(arg ft_300_prefix)fts_toolside"/>
   <xacro:arg name="c_model_prefix" default="UR_1_"/>
 
