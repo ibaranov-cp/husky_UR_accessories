@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="c_model_open">
+
+    <xacro:macro name="c_model_open" params="parent prefix ">
+
+        <!-- mount the Gripper to the robot -->
+
+        <joint name="${prefix}_c_model_adapter" type="fixed" >
+            <origin xyz="0.0 0.0 0.09712" rpy="0.0 0.0 0.0"/>
+	           <parent link="${parent}" />
+            <child link="${prefix}c_model_link" />
+        </joint>
+
+        <link name="${prefix}c_model_link">
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://robotiq_c_model_viz/meshes/c_model_open.dae" />
+                </geometry>
+            </visual>
+
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://robotiq_c_model_viz/meshes/c_model_open_collision.stl" />
+                </geometry>
+            </collision>
+        </link>
+
+    </xacro:macro>
+</robot>

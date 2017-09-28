@@ -4,12 +4,12 @@
 
   <xacro:include filename="$(find robotiq_force_torque_sensor)/urdf/robotiq_fts300.urdf.xacro" />
   <xacro:include filename="$(find robotiq_s_model_control)/urdf/s_model_open.urdf.xacro" />
-
+  <xacro:include filename="$(find robotiq_c_model_viz)/urdf/c_model_open.urdf.xacro" />
 
   <!-- CHANGE BELOW VALUES DURING INTEGRATION -->
   <!-- MUST CHANGE TO UR5, UR3 or UR10 depending on needs -->
   <xacro:include filename="$(find ur_description)/urdf/ur5.urdf.xacro" />
-  
+
   <xacro:arg name="ur3_enabled" default="false"/>
   <xacro:arg name="ur5_enabled" default="true"/>
   <xacro:arg name="ur10_enabled" default="false"/>
@@ -18,12 +18,16 @@
   </xacro:property>
 
   <xacro:arg name="ft_300_enabled" default="true"/>
-  <xacro:arg name="ft_300_parent" default="ur_arm_tool0"/> 
+  <xacro:arg name="ft_300_parent" default="ur_arm_tool0"/>
   <xacro:arg name="ft_300_prefix" default="UR_1_"/>
 
-  <xacro:arg name="s_model_enabled" default="true"/>
+  <xacro:arg name="s_model_enabled" default="false"/>
   <xacro:arg name="s_model_parent" default="$(arg ft_300_prefix)fts_toolside"/>
   <xacro:arg name="s_model_prefix" default="UR_1_"/>
+
+  <xacro:arg name="c_model_enabled" default="true"/>
+  <xacro:arg name="c_model_parent" default="$(arg ft_300_prefix)fts_toolside"/>
+  <xacro:arg name="c_model_prefix" default="UR_1_"/>
 
   <xacro:property name="arch_origin">
     <origin xyz="-0.32 0.0 0.0" rpy="0.0 0.0 0.0" />
@@ -41,6 +45,11 @@
     <xacro:if value="$(arg s_model_enabled)">
       <!-- Spawn S model Gripper -->
       <xacro:s_model_open prefix="$(arg s_model_prefix)" parent="$(arg s_model_parent)"/>
+    </xacro:if>
+
+    <xacro:if value="$(arg c_model_enabled)">
+      <!-- Spawn S model Gripper -->
+      <xacro:c_model_open prefix="$(arg c_model_prefix)" parent="$(arg c_model_parent)"/>
     </xacro:if>
 
     <xacro:if value="$(arg ur3_enabled)">
